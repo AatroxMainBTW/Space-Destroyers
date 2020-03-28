@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scene/SOLAR.tscn" type="PackedScene" id=1]
+[ext_resource path="res://audios/Shoot.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Hero/Score.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/boss_health.gd" type="Script" id=4]
+[ext_resource path="res://Scene/backgroundtest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/Hero/pixel_ship_blue.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/others things/thruster-5.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/others things/thruster-2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/others things/thruster-3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/others things/thruster-4.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/others things/thruster-1.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Player_vs_boss.gd" type="Script" id=12]
+[ext_resource path="res://Scene/Main_menu.gd" type="Script" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.0077, 35.0536 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="SOLAR MAN" type="Node2D"]
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 119.992, 275.392 )
+rotation = 1.5597
+collision_mask = 2
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+rotation = -0.0314924
+shape = SubResource( 1 )
+
+[node name="Canon" type="Position2D" parent="Player"]
+position = Vector2( -0.510507, -39.7253 )
+
+[node name="Trusters" type="Position2D" parent="Player"]
+position = Vector2( 0.270344, 61.3663 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player/Trusters"]
+frames = SubResource( 2 )
+frame = 4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 2 )
+
+[node name="LevelLayer" type="CanvasLayer" parent="."]
+
+[node name="TestLevel" type="Node2D" parent="LevelLayer"]
+
+[node name="SOLAR" parent="LevelLayer/TestLevel" instance=ExtResource( 1 )]
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="Text_health" type="TextureRect" parent="hud"]
+margin_left = 778.764
+margin_top = -24.0493
+margin_right = 842.764
+margin_bottom = 39.9507
+rect_scale = Vector2( 2.83642, 4.2009 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="hud/Text_health"]
+margin_left = 16.6504
+margin_top = 20.5293
+margin_right = 56.6504
+margin_bottom = 34.5293
+rect_scale = Vector2( 0.824939, 0.522655 )
+custom_colors/font_color = Color( 0, 1, 0.203922, 1 )
+text = "4"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main_menu" type="Button" parent="hud"]
+margin_left = 119.0
+margin_top = 28.0
+margin_right = 240.0
+margin_bottom = 60.0
+text = "MENU"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
+[connection signal="pressed" from="hud/Main_menu" to="hud/Main_menu" method="_on_Main_menu_pressed"]

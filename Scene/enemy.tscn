@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/others things/pixel_ship_red.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/enemy.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/animated/explosion-export3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/animated/explosion-export2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/animated/explosion-export1.png" type="Texture" id=5]
+[ext_resource path="res://audios/Explosion7.wav" type="AudioStream" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.2675, 30.9108 )
+
+[node name="enemy" type="Area2D"]
+position = Vector2( 993.733, 34.9906 )
+collision_layer = 8
+collision_mask = 16
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+Velocity = Vector2( -100, 0 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+rotation = -1.57109
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+[connection signal="area_entered" from="." to="." method="_on_enemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_enemy_body_entered"]
+[connection signal="hide" from="." to="." method="_on_enemy_hide"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/background/background-blue.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Stars.gd" type="Script" id=2]
+
+[node name="Stars" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Star1" type="Sprite" parent="."]
+position = Vector2( -2.118, 1.67 )
+scale = Vector2( 1, 1.50941 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Star2" type="Sprite" parent="."]
+position = Vector2( 395.635, 1.67 )
+scale = Vector2( 1, 1.50941 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Star3" type="Sprite" parent="."]
+position = Vector2( 780.355, 1.67 )
+scale = Vector2( 1, 1.50941 )
+texture = ExtResource( 1 )
+centered = false

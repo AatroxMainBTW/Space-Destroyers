@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/SOLAR.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Boss/boss2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Boss/boss1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Boss/boss3.png" type="Texture" id=4]
+[ext_resource path="res://audios/Explosion7.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sprites/animated/explosion-export1.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/animated/explosion-export3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/animated/explosion-export2.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 26.2711
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 25.4579
+
+[node name="SOLAR" type="KinematicBody2D"]
+position = Vector2( 879.227, 266.804 )
+scale = Vector2( 4.5669, 2.83914 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -51.3196, -11.4236 )
+
+[node name="health" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Armor" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Armor"]
+visible = false
+position = Vector2( -0.330978, 0.0365486 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Armor" to="." method="_on_Armor_area_entered"]

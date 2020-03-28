@@ -1,0 +1,84 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Sprites/Hero/pixel_ship_blue.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/animated/explosion-export2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/others things/thruster-1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/others things/thruster-5.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/others things/thruster-2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/others things/thruster-3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/others things/thruster-4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/animated/explosion-export1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/animated/explosion-export3.png" type="Texture" id=10]
+[ext_resource path="res://audios/Explosion7.wav" type="AudioStream" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31.035, 30.163 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24.2534, 36.5476 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 334.983, 188.355 )
+rotation = -0.00366569
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.990784, 2.50867 )
+rotation = 1.57842
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -11.7281, 5.62524 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 47.051, 1.22973 )
+
+[node name="Trusters" type="Position2D" parent="."]
+position = Vector2( -90.9748, 2.29205 )
+rotation = 6.20287
+scale = Vector2( 1.30404, 0.744763 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Trusters"]
+position = Vector2( 17.6465, 1.7926 )
+rotation = 1.61538
+frames = SubResource( 3 )
+frame = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 23.4283, 2.07196 )
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -12.1331, 2.04614 )
+shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

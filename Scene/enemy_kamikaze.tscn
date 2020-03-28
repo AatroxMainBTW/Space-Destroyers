@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scene/enemy.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.2675, 30.9108 )
+
+[node name="enemy_kamikaze" instance=ExtResource( 1 )]
+collision_mask = 17
+Velocity = Vector2( -200, 0 )
+
+[node name="Sprite" parent="." index="0"]
+rotation = -1.5708
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )

@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/Boss/Boss_attack3.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Boss/Boss_attack4.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Boss/Boss_attack5.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Boss/Boss_attack2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Boss/Boss_attack1.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Boss_laser.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Fire",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.02248
+
+[node name="Boss_laser" type="Area2D"]
+position = Vector2( 797.313, 129.401 )
+scale = Vector2( -3.6127, 4.14331 )
+collision_layer = 2
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Fire"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -12.2602, -6.47068 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="body_shape_entered" from="." to="." method="_on_Boss_laser_body_shape_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

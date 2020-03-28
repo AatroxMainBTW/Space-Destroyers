@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scene/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/others things/pixel_ship_yellow.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/animated/explosion-export2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/animated/explosion-export1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/animated/explosion-export3.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/enemy_clever.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 10.0
+} ]
+
+[node name="enemy_clever" instance=ExtResource( 1 )]
+position = Vector2( 1000.09, 35.3878 )
+collision_mask = 17
+script = ExtResource( 6 )
+Velocity = Vector2( 0, 0 )
+
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 1 )
+
+[node name="canon" type="Position2D" parent="." index="4"]
+position = Vector2( -50.8436, -0.397217 )

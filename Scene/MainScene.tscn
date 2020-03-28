@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scene/backgroundtest.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/others things/Ecran_titre.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Start.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Quit.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/OPTION.gd" type="Script" id=5]
+
+[node name="Main Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.90759
+margin_right = 3.90759
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Node"]
+margin_left = 399.426
+margin_top = 1.80285
+margin_right = 725.426
+margin_bottom = 257.803
+rect_scale = Vector2( 0.847173, 1.33817 )
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node/TextureRect"]
+margin_left = 12.9807
+margin_top = 101.868
+margin_right = 334.981
+margin_bottom = 141.868
+rect_scale = Vector2( 2.08556, 2.21171 )
+text = "Space Invaders begins"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Node"]
+margin_left = 307.437
+margin_top = 321.0
+margin_right = 405.437
+margin_bottom = 341.0
+rect_scale = Vector2( 1.01768, 1 )
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "START"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Node"]
+margin_left = 673.514
+margin_top = 321.0
+margin_right = 771.514
+margin_bottom = 341.0
+rect_scale = Vector2( 1.01768, 1 )
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "QUIT"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OPTION" type="Button" parent="Node"]
+margin_left = 486.8
+margin_top = 321.0
+margin_right = 584.8
+margin_bottom = 341.0
+rect_scale = Vector2( 1.01768, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "OPTION"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" parent="Node" instance=ExtResource( 1 )]
+[connection signal="pressed" from="Node/Start" to="Node/Start" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Node/Quit" to="Node/Quit" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Node/OPTION" to="Node/OPTION" method="_on_OPTION_pressed"]

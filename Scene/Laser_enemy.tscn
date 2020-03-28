@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/others things/pixel_laser_yellow.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Laser_enemy.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/animated/explosion-export2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/animated/explosion-export1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/animated/explosion-export3.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.0585, 10 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Fire_enemy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 10.0
+} ]
+
+[node name="Laser_enemy" type="Area2D"]
+position = Vector2( 977.879, 53.5391 )
+collision_layer = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -2.20891, -0.15778 )
+rotation = 1.56897
+frames = SubResource( 2 )
+animation = "Dead"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_Laser_enemy_area_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

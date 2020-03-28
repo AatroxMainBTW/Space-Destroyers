@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/background/background-blue.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/backgroundtest.gd" type="Script" id=2]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource( 2 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 340, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer"]
+margin_left = -6.36645
+margin_top = -0.772263
+margin_right = 708.634
+margin_bottom = 406.228
+rect_scale = Vector2( 1.09595, 1.50137 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 340, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer2"]
+margin_left = 765.813
+margin_top = -0.772
+margin_right = 1480.81
+margin_bottom = 406.228
+rect_scale = Vector2( 1.09595, 1.50137 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

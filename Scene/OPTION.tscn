@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/others things/Ecran_titre.png" type="Texture" id=1]
+[ext_resource path="res://Scene/backgroundtest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/full.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Disable_full.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/main_menu.gd" type="Script" id=5]
+
+[node name="OPTION" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.92255
+margin_top = 1.62903
+margin_right = 1.92261
+margin_bottom = 1.62903
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="option" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="option"]
+margin_left = 346.694
+margin_top = -18.1884
+margin_right = 804.693
+margin_bottom = 237.812
+rect_scale = Vector2( 1.64393, 0.942132 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="option/TextureRect"]
+margin_left = 31.3074
+margin_top = 91.8013
+margin_right = 115.307
+margin_bottom = 105.801
+rect_scale = Vector2( 2.19505, 4.15998 )
+text = "Option Menu"
+
+[node name="ParallaxBackground" parent="option" instance=ExtResource( 2 )]
+
+[node name="full" type="Button" parent="option"]
+margin_left = 450.515
+margin_top = 193.545
+margin_right = 666.515
+margin_bottom = 237.545
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "Full screen"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Disable_full" type="Button" parent="option"]
+margin_left = 454.491
+margin_top = 260.545
+margin_right = 666.491
+margin_bottom = 306.545
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "Disable Full screen"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main_menu" type="Button" parent="option"]
+margin_left = 455.6
+margin_top = 327.583
+margin_right = 667.6
+margin_bottom = 373.583
+custom_colors/font_color_hover = Color( 0.0392157, 0.533333, 0.160784, 1 )
+text = "Main Menu"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="option/full" to="option/full" method="_on_full_pressed"]
+[connection signal="pressed" from="option/Disable_full" to="option/Disable_full" method="_on_Disable_full_pressed"]
+[connection signal="pressed" from="option/main_menu" to="option/main_menu" method="_on_main_menu_pressed"]
