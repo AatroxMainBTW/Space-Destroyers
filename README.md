@@ -12,4 +12,4 @@ space side scroller made by begginer with Godot 3 the objective of this game is 
 <b>Assets and animation</b> : <p>im using free assets and i made the animation and boss on Aseprite</p>
 <h2>Contribution</h2>
 <b>feels free to download this project and make changes and use the assets </b>
-It Ain't Much, But it's Honest Work ^^
+<p>It Ain't Much, But it's Honest Work ^^</p>
